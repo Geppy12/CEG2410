@@ -4,7 +4,9 @@
 
 ### Selected Platform: Microsoft Entra ID
 
----
+
+
+
 
 ### Platform Information
 
@@ -16,7 +18,7 @@
 - **Link:**  
   https://entra.microsoft.com/
 
----
+
 
 ### Dependencies for Implementation
 
@@ -25,7 +27,7 @@
 - Directory synchronization tool (e.g., Azure AD Connect for hybrid environments)  
 - Integration with apps (SaaS, on-prem apps via SSO/SAML/OAuth)
 
----
+
 
 ### Cost to Implement
 
@@ -37,14 +39,14 @@
   - Licensing bundles (Microsoft 365 E3/E5)  
   - Infrastructure for hybrid environments  
 
----
+
 
 ### Pricing Model
 
 - Subscription-based (per user/month)  
 - Tiered licensing (Free, P1, P2)
 
----
+
 
 ### Scalability
 
@@ -52,7 +54,7 @@
 - Handles millions of users and identities  
 - Cloud-native architecture allows elastic scaling
 
----
+
 
 ### Implementation Needs
 
@@ -61,7 +63,7 @@
 - User provisioning (manual or automated sync)  
 - Application integration (SSO configuration)
 
----
+
 
 ### What Administrators Enter
 
@@ -70,7 +72,7 @@
 - Access roles and permissions  
 - Device compliance policies  
 
----
+
 
 ### Policy Management
 
@@ -80,7 +82,7 @@
   - Risk-based authentication  
 - Security defaults (baseline protection)
 
----
+
 
 ### Access Management
 
@@ -89,7 +91,7 @@
 - Application-level permissions  
 - Privileged Identity Management (PIM)
 
----
+
 
 ### Account Configuration
 
@@ -98,13 +100,13 @@
 - Password policies  
 - MFA enforcement settings  
 
----
+
 
 ## 2. MFA & Verification Methods
 
 ### Selected Category: Hardware-Based Authentication
 
----
+
 
 ### 1. YubiKey
 
@@ -124,7 +126,7 @@
   - Optional backup keys recommended  
   - Minimal ongoing cost  
 
----
+
 
 ### 2. Smartcards (PIV/CAC)
 
@@ -144,19 +146,18 @@
   - Reader: ~$20–$100 per device  
   - Infrastructure (PKI setup can be expensive)  
 
----
 
 ## 3. High-Level Research Theme
 
 ### Selected Category: Deepfake Defense
 
----
+
 
 ### What is the Concern
 
 Deepfake technology uses AI to create highly realistic fake videos, audio, or biometric data. This poses a serious risk to identity verification systems, especially those relying on facial recognition or voice authentication.
 
----
+
 
 ### Is It Currently Being Exploited?
 
@@ -166,7 +167,7 @@ Yes — current exploitation includes:
 - Voice cloning used in social engineering attacks  
 - AI-generated faces used to create fake accounts  
 
----
+
 
 ### Methods for Exploitation
 
@@ -174,7 +175,7 @@ Yes — current exploitation includes:
 - Voice synthesis tools  
 - Real-time face swapping software  
 
----
+
 
 ### Response to Prevent Exploitation
 
@@ -190,7 +191,7 @@ Yes — current exploitation includes:
 - **AI Detection Tools:**  
   Systems trained to detect deepfake artifacts  
 
----
+
 
 ## Summary
 
