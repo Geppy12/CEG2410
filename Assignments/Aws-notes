@@ -1,0 +1,145 @@
+
+AWS has no password so if it asks for a password then use sudo or su 
+
+
+Sever Notes:
+
+The server is called new ubuntu sever
+## Vockey key pair
+
+## The security group that associated with it is the bad security group
+
+## Subnet associated subnet 01511d8d-etc
+
+## VPC is 08e7954ddf-etc
+
+Commands used:
+
+The first command that was used in any aws server or machine 
+is 
+## sudo apt update and sudo apt upgrade
+
+Bash Alias Dotfiles Setup — Notes
+Goal
+
+The goal of this assignment was to create a custom bash environment and store the configuration files inside a dotfiles repository.
+
+Dotfiles are configuration files (files that start with .) that customize how the Linux shell behaves.
+
+Using a repository allows the configuration to be:
+
+reused on other machines
+
+version controlled
+
+easily installed with a script
+
+Step 1 — Create Bash Aliases
+
+Aliases are shortcuts for commands in the terminal.
+
+Example:
+
+alias ll="ls -alF"
+
+This means when I type:
+
+ll
+
+it runs:
+
+ls -alF
+
+which shows a detailed directory listing.
+
+I created a file called:
+
+~/.bash_aliases
+
+and added useful command shortcuts.
+
+Example aliases used:
+
+alias ll="ls -alF"
+alias la="ls -A"
+alias l="ls -CF"
+alias ..="cd .."
+alias update="sudo apt update && sudo apt upgrade -y"
+
+These make the terminal faster and easier to use.
+
+Step 2 — Load the Aliases
+
+After creating the file, I loaded it into my shell with:
+
+source ~/.bash_aliases
+
+The source command reloads the file so the terminal recognizes the new aliases.
+
+I tested the aliases by running:
+ll
+
+If the directory listing appeared, the alias was working.
+
+Step 3 — Create the Dotfiles Repository Folder
+
+To store my configuration files, I created a repository folder:
+mkdir ~/dotfiles
+
+Inside that repository I created a folder called:
+homefiles
+
+Final structure:
+
+~/dotfiles
+   └── homefiles
+Step 4 — Copy Bash Configuration into the Repository
+
+I copied my alias file into the repository so it can be version controlled.
+
+Command used:
+cp ~/.bash_aliases ~/dotfiles/homefiles/
+
+Now the repository contains my shell customization file.
+
+Step 5 — Create an Install Script
+
+I created a script called:
+install.sh
+
+This script automatically installs the configuration when run.
+
+The script does three main things:
+Backs up existing alias files
+Creates a symbolic link
+Ensures bash loads the alias file
+
+Example command used in the script:
+ln -s ~/dotfiles/homefiles/.bash_aliases ~/.bash_aliases
+A symbolic link is like a shortcut that points to the file in the repository.
+
+This means if the file changes in the repository, the system automatically uses the updated version.
+
+Step 6 — Reload the Shell Environment
+
+After installing the aliases, the shell must reload the configuration.
+
+Command used:
+source ~/.bashrc
+
+This applies the new configuration to the current terminal session.
+
+Step 7 — Documentation
+
+I created a README.md file that explains:
+what the files do
+how to install them
+where the alias ideas came from
+how AI was used to help generate examples
+
+Final Folder Structure
+dotfiles
+└── homefiles
+    ├── .bash_aliases
+    ├── install.sh
+    └── README.md

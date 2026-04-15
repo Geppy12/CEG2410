@@ -1,0 +1,252 @@
+Web Hosting – Planning Phase
+Web Serving Stack
+
+My web server will run Apache HTTP Server to host two websites.
+Apache will serve both sites using virtual hosts, allowing multiple websites to run from the same server.
+
+Ports
+Inbound Ports
+
+The following ports must be open inbound to allow users to access the websites.
+
+Port	Protocol	Source	Purpose
+80	HTTP	Anywhere (0.0.0.0/0)	Allows normal web traffic
+443	HTTPS	Anywhere (0.0.0.0/0)	Allows encrypted web traffic
+22	SSH	Trusted IP only	Allows administrators to manage the server
+
+Port 80 will allow users to reach the website using HTTP, and port 443 will allow secure HTTPS connections.
+
+SSH access will be restricted to trusted IP addresses for security.
+
+Outbound Ports
+Port	Destination	Purpose
+80	Internet	Download packages and updates
+443	Internet	Secure downloads, APIs, certificates
+53	DNS Servers	Domain name resolution
+
+Outbound traffic allows the server to install updates, access DNS servers, and communicate with external services.
+
+Firewall Levels
+
+Firewall rules will be configured at multiple levels.
+
+Network ACL (NACL)
+
+NACL rules will allow inbound and outbound traffic for:
+
+HTTP (80)
+
+HTTPS (443)
+
+SSH (22)
+
+These rules apply at the subnet level.
+
+Security Group (SG)
+
+Security groups will allow:
+
+Port	Source
+22	Admin IP
+80	0.0.0.0/0
+443	0.0.0.0/0
+
+Security groups act as the primary firewall for the EC2 instance.
+
+System Firewall
+
+On the server itself I may use UFW or iptables to further restrict traffic.
+
+Example rules:
+
+Allow:
+
+SSH
+HTTP
+HTTPS
+
+Block everything else.
+
+Configuration
+Files that need to be edited
+
+The main Apache configuration files are:
+
+/etc/apache2/apache2.conf
+/etc/apache2/ports.conf
+/etc/apache2/sites-available/
+
+Virtual host files will be placed in:
+
+/etc/apache2/sites-available/
+Configuring Apache
+
+Apache will be configured by:
+
+Creating virtual host configuration files
+
+Enabling those sites
+
+Restarting the Apache service
+
+Example commands:
+
+a2ensite example.conf
+systemctl restart apache2
+Virtual Hosts
+
+Two virtual hosts will be created for the two websites.
+
+Example:
+
+/etc/apache2/sites-available/site1.conf
+/etc/apache2/sites-available/site2.conf
+
+Each virtual host will define:
+
+ServerName
+
+DocumentRoot
+
+Logging location
+
+This allows both websites to run from the same Apache server.
+
+DNS and Host Configuration
+
+If DNS records are available, each domain will point to the server's public IP address.
+
+Example:
+
+site1.example.com -> server IP
+site2.example.com -> server IP
+
+If testing locally, entries may be added to:
+
+/etc/hosts
+SSL / TLS (Stretch Goal)
+Creating a Self-Signed Certificate
+
+A self-signed certificate can be created with OpenSSL:
+openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout server.key -out server.crt
+Certificate Storage
+
+Certificates should be stored in:
+/etc/ssl/certs
+/etc/ssl/private
+
+This is the standard location for SSL files on Linux systems.
+The private key must be protected because it proves server identity.
+
+Certificate Permissions
+Private key:
+600
+Certificate file:
+644
+
+Only root should have access to the private key.
+Certificate Authority Validation
+
+If using a real certificate authority:
+Domain Validation (DV) is usually sufficient for most websites
+Organization Validation (OV) verifies the organization
+
+Extended Validation (EV) provides the highest trust level but is rarely required
+For most use cases, Domain Validation is appropriate.
+Enabling HTTPS
+Apache must enable the SSL module.
+
+Example command:
+a2enmod ssl
+A new virtual host must be created for HTTPS:
+
+<VirtualHost *:443>
+
+This will include:
+SSL certificate path
+SSL key path
+Redirect HTTP to HTTPS
+
+This ensures all users connect securely.
+
+Logging
+
+Apache logs are stored in:
+/var/log/apache2/
+Common logs:
+
+access.log
+error.log
+Logs can be viewed using:
+
+tail -f /var/log/apache2/access.log
+This helps troubleshoot issues with the website.
+
+Controlling the Web Server
+Apache runs as a system service.
+
+Commands:
+
+Start service:
+systemctl start apache2
+
+Stop service:
+systemctl stop apache2
+
+Restart service:
+systemctl restart apache2
+
+Check status:
+
+systemctl status apache2
+Web Content Location
+
+The default Apache web directory is:
+/var/www/
+
+Each site will have its own folder.
+Example structure:
+
+/var/www/
+    site1/
+        index.html
+    site2/
+        index.html
+
+Each virtual host will point to its specific directory.
+User and Permissions
+
+Apache runs as the user:
+www-data
+
+This means the web server reads files as the www-data user.
+File Permissions
+
+Typical permissions:
+Directories:
+755
+Files:
+644
+
+This allows Apache to read files but prevents unauthorized modification.
+Developer Access
+
+Developers will update website content using SFTP.
+SFTP is preferred because:
+encrypted connection
+uses SSH authentication
+more secure than FTP
+Developers will be given access to the content directories.
+
+Example group:
+webdev
+Developers will have write permission to their website directories but not system files.
+
+Summary
+This setup will allow the server to:
+host two websites using Apache virtual hosts
+support HTTP and HTTPS
+maintain secure firewall rules
+allow developers to update content using SFTP
+log server activity for troubleshooting
+use SSL certificates for encrypted communication

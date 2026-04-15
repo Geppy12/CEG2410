@@ -1,0 +1,1 @@
+This website looks really barebones, because am just here to figure out the server portion not html lol.
