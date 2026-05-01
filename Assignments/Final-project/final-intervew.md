@@ -22,7 +22,7 @@ sowerds , Mcghanon
 * Pet
 ---
 
-### 🖥️ Host OS   (sowereds) Grafana ubuntu 26.04 (Adian) Debian 13
+### 🖥️ Host OS   (sowereds) Grafana ubuntu 26.04 (Adian) Debian 13  , (ray) ubuntu 26.04
 
 Inquire which OS the software is hosted on.  If it is not on this list add a new bullet.  
 Nested bullets should be in form: `* Last name - OS version` where OS version is specific to the release (not just OS name).
@@ -34,7 +34,7 @@ Nested bullets should be in form: `* Last name - OS version` where OS version is
 
 ---
 
-### 💾 Software (sowereds) Grafana , (Adian) Immich , 
+### 💾 Software (sowereds) Grafana , (Adian) Immich , (Ray) Mealie
 
 Inquire which software they implemented.  If it is not on this list add a new bullet.  
 Nested bullets should be in form: `* Last name - software version` where software version is specific to the release (not just software name).
@@ -52,7 +52,7 @@ Nested bullets should be in form: `* Last name - software version` where softwar
 
 ---
 
-### 🧪 Live Demo
+### 🧪 Live Demo 
 
 Interact with or request demonstrations of their self-hosted implementation. A minimum of two feature of the software should be demonstrated.  If an interaction / demonstration method is not on this list add a new bullet.  
 Nested bullets should be in form: `* Last name - describe interaction / demonstration`
@@ -68,8 +68,8 @@ Nested bullets should be in form: `* Last name - describe interaction / demonstr
 Evaluate their firewall setup - this is a mix of Network ACLs, Security Groups, and / or system firewalls, per their setup. Have them explain what ports their application requires, and show their configuration settings around protected vs open ports 
 Nested bullets should be in form: `* Sowereds - the bad thing is that anyone can access it 
 
-* Positive notes on network security - accessible (sowerds)  (sowereds) good assessible from his home
-* Negative / recommend fixing notes on network security  (sowereds) ssh private ip 
+* Positive notes on network security - accessible (sowerds)  (adian) good assessible from his home (ray) he can only ssh in from home 
+* Negative / recommend fixing notes on network security  (sowereds) ssh private ip (ray) some open ports here and there
 
 ### ⚠️ Vulnerability Vectors
 
@@ -77,8 +77,8 @@ Inquire about potential vulnerability vectors of their self-hosted software. The
 Nested bullets should be in form: `* Gephart- assessible to anyone 
 
 * Left default username / password (sowereds) left default username and used a different password 
-* Exposed admin interfaces 
-* Insecure configurations
+* Exposed admin interfaces (ray) none (adian) none
+* Insecure configurations (ray) none (adian) nome
 * Users have destructive permissions to software assets
 * Outdated versions of software or dependencies
 
@@ -87,7 +87,7 @@ Nested bullets should be in form: `* Gephart- assessible to anyone
 ### 💥 Live Troubleshooting / Future Fixes
 
 Help someone with troubleshooting, get help with your troubleshooting, or find something you recommend they fix. Minimum of one is required.  
-Nested bullets should be in form: `* Last name - description of situation`
+Nested bullets should be in form: `* Mchagon - 'storage'
 
 * I received help from Dane with... trobuleshooting 
 * I gave help to dane  by... Bryce  logging in
